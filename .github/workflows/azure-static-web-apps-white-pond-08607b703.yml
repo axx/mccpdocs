@@ -29,12 +29,11 @@ jobs:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
       - name: Setup Docsy
+        working-directory: ./themes/docsy
         run: |
-          cd themes/docsy
-          npm install
+          npm install --save-dev autoprefixer postcss-cli postcss
       - name: Build Hugo Site
         run: |
-          npm install
           hugo
           ls -l public
       - name: Upload Hugo artifacts
