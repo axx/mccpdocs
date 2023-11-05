@@ -2,4 +2,3 @@ baseURL: https://example.org/
 languageCode: en-us
 title: MCCP Documentation
 theme: docsy
-themesDir: node_modules
