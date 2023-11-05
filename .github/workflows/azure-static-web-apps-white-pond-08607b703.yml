@@ -37,7 +37,10 @@ jobs:
           npm install
       - name: Build Hugo Site
         run: |
-          hugo
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            STAGING_URL="https://white-pond-08607b703-${{ github.event.number }}.westeurope.4.azurestaticapps.net/"
+          fi
+          hugo ${STAGING_URL+-b "$STAGING_URL"}
           ls -l public
       - name: Upload Hugo artifacts
         uses: actions/upload-artifact@v3
