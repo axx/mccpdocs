@@ -17,8 +17,11 @@ jobs:
     env:
       HUGO_ENV: production
       HUGO_VERSION: 0.118.2
+      DOCSY_VERSION: 0.7.1
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: true
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -32,6 +35,7 @@ jobs:
         run: |
           npm install --save-dev autoprefixer postcss-cli postcss
           cd themes/docsy
+          git checkout v${{ env.DOCSY_VERSION }}
           npm install
       - name: Build Hugo Site
         run: |
